@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "arcade";
+  src: url(arcade.ttf) format("truetype");
+}
+
+html,
+body {
+  background: #161719;
+  font-family: 'arcade';
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  margin: 0;
+  padding: 0;
+}
+
+.glitch {
+  color: white;
+  font-size: 30px;
+  text-shadow: 1px 3px #6a95fd;
+  margin-top: -50px;
+  word-spacing: 8px;
+}
+
+button {
+  margin: 25px;
+  border: 1px solid white;
+  border-bottom-width: 3px;
+  background: #161719;
+  color: white;
+  border-radius: 2px;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: 'arcade';
+  outline: none;
+  cursor: pointer;
+  transition-duration: .2s;
+}
+
+button:hover {
+  text-decoration: underline;
+  transform: scale(1.03);
+}
