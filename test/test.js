@@ -17,7 +17,7 @@ function patchGlobal(funcName) {
   global[funcName] = function() {
     mock.called = true;
     mock.callCount++;
-  }
+  };
 
   return mock;
 }
@@ -54,14 +54,15 @@ describe('Glitcher', function() {
     });
 
     it('should change the text when animation starts', function() {
-      let rafMock = patchGlobal('requestAnimationFrame');
-      let cafMock = patchGlobal('cancelAnimationFrame');
       let domElement = getDomElementMock('test content');
       let diffCount = 0;
       let glitch = Glitcher.glitch({
         el: domElement,
         unstableDelta: 100, // this is so it gets unscrambled immediatly
       });
+
+      patchGlobal('requestAnimationFrame');
+      patchGlobal('cancelAnimationFrame');
 
       glitch.lastTime = 1;
       glitch.start(110);
@@ -77,13 +78,14 @@ describe('Glitcher', function() {
     });
 
     it('should reset the original text when animation stops', function() {
-      let rafMock = patchGlobal('requestAnimationFrame');
-      let cafMock = patchGlobal('cancelAnimationFrame');
       let domElement = getDomElementMock('test content');
       let glitch = Glitcher.glitch({
         el: domElement,
         unstableDelta: -1, // this is so it gets unscrambled immediatly
       });
+
+      patchGlobal('requestAnimationFrame');
+      patchGlobal('cancelAnimationFrame');
 
       glitch.start();
       assert.notEqual('test content', domElement.textContent);
@@ -93,13 +95,14 @@ describe('Glitcher', function() {
     });
 
     it('should reset the original text when all frames are done', function() {
-      let rafMock = patchGlobal('requestAnimationFrame');
-      let cafMock = patchGlobal('cancelAnimationFrame');
       let domElement = getDomElementMock('test content');
       let glitch = Glitcher.glitch({
         el: domElement,
         unstableDelta: -1, // this is so it gets unscrambled immediatly
       });
+
+      patchGlobal('requestAnimationFrame');
+      patchGlobal('cancelAnimationFrame');
 
       glitch.currentStep = 1;
       glitch.start();

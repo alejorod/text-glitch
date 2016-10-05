@@ -95,4 +95,4 @@ export default {
   glitch({el, ...config}) {
     return new Glitcher(el, config);
   }
-}
+};
